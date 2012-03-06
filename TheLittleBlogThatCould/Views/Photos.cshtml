@@ -6,22 +6,27 @@
 @foreach (var photo in Model.Photos)
 {
     <div class="row">
-        <div class="span7">
+        <div class="span7 offset1">
             <h2 style="display: inline">
-                <a href="/photo/@photo.Id">@(photo.Caption ?? photo.FileName)</a>
+                <a href="/photo/@photo.Id">@photo.Caption</a>
             </h2>
             <a href="/photo/@photo.Id/edit" class="label label-success">Edit</a>
             <a href="#" data-id="@photo.Id" class="label label-warning delete">Delete</a>
         </div>
     </div>
     <div class="row">
-        <div class="span9">
+        <div class="span9 offset1">
             <a href="/photo/@photo.Id">
-                <img src="/photo/@photo.Id/render/700" alt="@photo.Caption" />
+                <img src="/photo/@photo.Id/render/600" alt="@photo.Caption" />
             </a>
         </div>
-    </div>   
-    <hr />
+    </div>
+    <div class="row">
+        <div class="span9">
+            <hr />
+        </div>
+    </div>
+    
 }
 @if (Model.Photos.Length == 0)
 {

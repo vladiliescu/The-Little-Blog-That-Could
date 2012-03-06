@@ -9,18 +9,12 @@
             <fieldset>
                 <legend>Edit photo</legend>
                 <div class="control-group">
-                    <label for="caption" class="control-label">Caption <em>(optional)</em>:</label>
+                    <label for="caption" class="control-label">Caption:</label>
                     <div class="controls">
-                        <input type="text" name="caption" id="caption" autofocus value="@Model.Caption" />
+                        <input type="text" name="caption" id="caption" autofocus required value="@Model.Caption" />
                     </div>
                 </div>
-        
-                <div class="control-group">
-                    <label for="fileName" class="control-label">File name:</label>
-                    <div class="controls">
-                        <input type="text" name="fileName" id="fileName" required value="@Model.FileName" />
-                    </div>
-                </div>
+                
                 <div class="form-actions">
                     <input type="submit" class="btn btn-primary" value="Save" />
                     <a href="/photo/@Model.Id" class="btn">Cancel</a>
