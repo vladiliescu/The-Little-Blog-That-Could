@@ -3,4 +3,3 @@ glob:*.user
 glob:bin/*
 glob:obj/*
 glob:*.suo
-glob:*.vs10x
