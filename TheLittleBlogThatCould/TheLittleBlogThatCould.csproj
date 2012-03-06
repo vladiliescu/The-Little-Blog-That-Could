@@ -43,6 +43,10 @@
     <Reference Include="Nancy.ViewEngines.Razor">
       <HintPath>..\packages\Nancy.Viewengines.Razor.0.10.0\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy.ViewEngines.Razor.BuildProviders, Version=0.10.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Nancy.Viewengines.Razor.0.10.0\BuildProviders\Nancy.ViewEngines.Razor.BuildProviders.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -136,8 +140,7 @@
   </ProjectExtensions>
   <PropertyGroup>
     <PostBuildEvent>
-xcopy /s /y "$(SolutionDir)packages\Nancy.Viewengines.Razor.0.10.0\BuildProviders\Nancy.ViewEngines.Razor.BuildProviders.dll" "$(ProjectDir)bin"
-xcopy /s /y "$(SolutionDir)packages\Nancy.Viewengines.Razor.0.10.0\lib\Net40\Nancy.ViewEngines.Razor.dll" "$(ProjectDir)bin"</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
