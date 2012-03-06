@@ -6,7 +6,6 @@ namespace LittleBlog.Photos
     public class Photo
     {
         public Guid Id { get; private set; }
-        public string FileName { get; private set; }
         public string Caption { get; private set; }
         public byte[] Content { get; private set; }
         public string ContentType { get; private set; }
@@ -17,16 +16,14 @@ namespace LittleBlog.Photos
             Id = Guid.NewGuid();
             Timestamp = DateTime.Now;
 
-            FileName = fileName;
-            Caption = caption;
+            Caption = string.IsNullOrEmpty(caption.Trim()) ? fileName : caption.Trim();
             ContentType = contentType;
             Content = new byte[content.Length];
             content.Read(Content, 0, (int)content.Length);
         }
 
-        public void ChangeInfo(string fileName, string caption)
+        public void ChangeInfo(string caption)
         {
-            FileName = fileName;
             Caption = caption;
         }
     }

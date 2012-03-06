@@ -19,7 +19,7 @@ namespace LittleBlog.Photos
             Get["/search"] = r =>
             {
                 var query = ((string)Request.Query["q"]).ToUpper();
-                var photos = photosRepository.GetAll().Where(x => x.Caption.ToUpper().Contains(query) || x.FileName.ToUpper().Contains(query));
+                var photos = photosRepository.GetAll().Where(x => x.Caption.ToUpper().Contains(query));
                 return View[new PhotosModel(photos)];
             };
 
@@ -52,7 +52,7 @@ namespace LittleBlog.Photos
             {
                 var model = this.Bind<PhotoModel>();
                 var photo = photosRepository.Get(model.Id);
-                photo.ChangeInfo(model.FileName, model.Caption);
+                photo.ChangeInfo(model.Caption);
 
                 return Response.AsRedirect("/photo/" + photo.Id);
             };
