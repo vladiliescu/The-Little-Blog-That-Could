@@ -52,7 +52,7 @@ namespace LittleBlog.Photos
             {
                 var model = this.Bind<PhotoModel>();
                 var photo = photosRepository.Get(model.Id);
-                photo.ChangeInfo(model.Caption);
+                photo.Caption = model.Caption;
 
                 return Response.AsRedirect("/photo/" + photo.Id);
             };

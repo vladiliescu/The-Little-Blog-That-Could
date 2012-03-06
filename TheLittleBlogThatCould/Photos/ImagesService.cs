@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 
@@ -15,13 +14,10 @@ namespace LittleBlog.Photos
         public Stream ResizeByWidth(Stream stream, int width)
         {
             var image = Image.FromStream(stream);
-            var percentW = (image.Width / (float)width);
 
-            var bitmap = new Bitmap(width, (int)(image.Height / percentW));
+            var bitmap = new Bitmap(width, (int)(image.Height / (image.Width / (float)width)));
             using (var g = Graphics.FromImage(bitmap))
             {
-                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                g.SmoothingMode = SmoothingMode.AntiAlias;
                 g.DrawImage(image, 0, 0, bitmap.Width, bitmap.Height);
             }
 
