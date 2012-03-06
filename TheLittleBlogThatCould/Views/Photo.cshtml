@@ -1,0 +1,43 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<LittleBlog.Photos.PhotoModel>
+@{
+    Layout = "_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="span1">
+        <a href="/"><span class="label">back</span></a>
+    </div>
+    <div class="span8">
+        <h1 style="display: inline">
+            @Model.Caption
+            <small>@Model.FileName</small>
+        </h1>
+         <a href="/photo/@Model.Id/edit" class="label label-success">Edit</a>
+        <a href="#" data-id="@Model.Id" class="label label-warning delete">Delete</a>
+    </div>
+</div>
+<div class="row">
+    <div class="span11">
+        <img src="/photo/@Model.Id/render" />
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('a.delete').click(function (e) {
+            if (!confirm('Are you sure you want to delete this photo?'))
+                return;
+
+            var id = $(this).data("id");
+            $.ajax("/photo/" + id, {
+                type: "delete",
+                success: function () {
+                    window.location = "/";
+                },
+                error: function () {
+                    alert("Unable to delete photo");
+                }
+            });
+        });
+    });
+</script>

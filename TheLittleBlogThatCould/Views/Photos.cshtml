@@ -1,0 +1,79 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<LittleBlog.Photos.PhotosModel>
+@{
+    Layout = "_Layout.cshtml";
+}
+
+@foreach (var photo in Model.Photos)
+{
+    <div class="row">
+        <div class="span7">
+            <h2 style="display: inline">
+                <a href="/photo/@photo.Id">@(photo.Caption ?? photo.FileName)</a>
+            </h2>
+            <a href="/photo/@photo.Id/edit" class="label label-success">Edit</a>
+            <a href="#" data-id="@photo.Id" class="label label-warning delete">Delete</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span9">
+            <a href="/photo/@photo.Id">
+                <img src="/photo/@photo.Id/render/700" alt="@photo.Caption" />
+            </a>
+        </div>
+    </div>   
+    <hr />
+}
+@if (Model.Photos.Length == 0)
+{
+    <div class="row">
+        <div class="span12" style="text-align: center">
+            I haven't found any photos. Perhaps you would like to <a class="btn btn-primary" href="/add" >add</a> one?
+        </div>
+    </div>
+}
+
+<div class="modal hide fade in" style="display: none; ">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>Warning</h3>
+    </div>
+    <div class="modal-body">
+        Are you sure you want to delete this photo?
+    </div>
+    <div class="modal-footer">        
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+        <a href="#" class="btn btn-primary">Save changes</a>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.row a.delete').click(function (e) {
+            if (!confirm('Are you sure you want to delete this photo?'))
+                return;
+
+            var $parentRow = $(this).parents("div.row");
+            var $imageRow = $parentRow.next("div.row");
+            var $hr = $imageRow.next("hr");
+
+            var id = $(this).data("id");
+            $.ajax("/photo/" + id, {
+                type: "delete",
+                success: function () {
+                    $parentRow.hide("slow");
+                    $imageRow.hide("slow");
+                    $hr.hide("slow");
+
+                    setTimeout(function () {    //we need to have a timeout here, otherwise the rows will be removed immediately, without any animation
+                        $parentRow.remove();
+                        $imageRow.remove();
+                        $hr.remove();
+                    }, 1000);
+                },
+                error: function () {
+                    alert("Unable to delete photo");
+                }
+            });
+        });
+    });
+</script>
