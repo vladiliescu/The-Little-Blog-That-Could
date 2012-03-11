@@ -85,9 +85,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrapper.cs" />
-    <Compile Include="CustomViewEngine\CustomViewEngineModule.cs" />
-    <Compile Include="CustomViewEngine\MyViewEngine.cs" />
     <Compile Include="Photos\ImagesService.cs" />
     <Compile Include="Photos\Photo.cs" />
     <Compile Include="Photos\PhotoModel.cs" />
@@ -113,9 +110,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\PhotoEdit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="CustomViewEngine\Views\MyCustomView.mine" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
