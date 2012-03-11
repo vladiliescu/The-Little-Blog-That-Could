@@ -59,7 +59,7 @@
 
             var $parentRow = $(this).parents("div.row");
             var $imageRow = $parentRow.next("div.row");
-            var $hr = $imageRow.next("hr");
+            var $hr = $imageRow.next("div.row");
 
             var id = $(this).data("id");
             $.ajax("/photo/" + id, {
